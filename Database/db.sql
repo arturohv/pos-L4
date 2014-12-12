@@ -181,6 +181,39 @@ CREATE TABLE "user" (
 	UNIQUE(user_name,email)
 );
 
+CREATE TABLE permission(
+	id INTEGER NOT NULL,
+	controller_name VARCHAR(60) NOT NULL ,
+	action_name VARCHAR(60) NOT NULL ,
+	description text ,
+	PRIMARY KEY (id) ,
+	UNIQUE(controller_name,action)
+);
+
+CREATE TABLE role(
+	id INTEGER NOT NULL ,
+	role_name VARCHAR(60) NOT NULL ,	
+	description text ,
+	PRIMARY KEY (id) ,
+	UNIQUE(role_name)
+);
+
+CREATE TABLE role_permission(
+	id INTEGER NOT NULL ,
+	role_id INTEGER NOT NULL ,	
+	permission_id INTEGER NOT NULL ,
+	PRIMARY KEY (id) ,
+	UNIQUE(role_id,permission_id)
+);
+
+CREATE TABLE role_user(
+	id INTEGER NOT NULL ,
+	role_id INTEGER NOT NULL ,	
+	user_id INTEGER NOT NULL ,
+	PRIMARY KEY (id) ,
+	UNIQUE(role_id,user_id)
+);
+
 /*user*/
 ALTER TABLE "user" ADD constraint fk_user_person FOREIGN KEY (id) REFERENCES person (id);
 /*product_images*/
@@ -220,6 +253,13 @@ ALTER TABLE product ADD constraint fk_product_product_type FOREIGN KEY (product_
 ALTER TABLE product ADD constraint fk_product_measure_unit FOREIGN KEY (measure_unit_id) REFERENCES measure_unit (id);
 /*tax_group*/
 ALTER TABLE tax_group ADD constraint fk_tax_group_tax_type FOREIGN KEY (tax_type_id) REFERENCES tax_type (id);
+/*role permission*/
+ALTER TABLE role_permission ADD constraint fk_role_permission_role FOREIGN KEY (role_id) REFERENCES role (id);
+ALTER TABLE role_permission ADD constraint fk_role_permission_permission FOREIGN KEY (permission_id) REFERENCES permission (id);					
+/*role_user*/
+ALTER TABLE role_user ADD constraint fk_role_user_role FOREIGN KEY (role_id) REFERENCES role (id);
+ALTER TABLE role_user ADD constraint fk_role_user_user FOREIGN KEY (user_id) REFERENCES user (id);
+
 
 /*Inserts measure_unit*/
 insert into measure_unit (measure_unit_name, symbol) values ('Unidad','U');
@@ -250,6 +290,8 @@ insert into document_status (status_name) values ('Nuevo');
 insert into document_status (status_name) values ('Parcialmente Procesada');
 insert into document_status (status_name) values ('Procesada');
 insert into document_status (status_name) values ('Impresa');
-insert into document_status (status_name) values ('Anulado');					
+insert into document_status (status_name) values ('Anulado');
+
+
 
 
