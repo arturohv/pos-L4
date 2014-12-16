@@ -10,6 +10,38 @@
 	measure_unit_id INTEGER NOT NULL ,	
 	is_active BOOLEAN DEFAULT true ,
 	is_visible BOOLEAN DEFAULT true ,
+	stock_max DECIMAL(19,4) DEFAULT 0 ,
+	stock_min	DECIMAL(19,4) DEFAULT 0 ,
+	discount_max DECIMAL(19,4) DEFAULT 0
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE document_type(
+	id SERIAL NOT NULL ,
+	document_name VARCHAR(60) ,
+	description TEXT ,
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE store(
+	id SERIAL NOT NULL ,
+	store_name VARCHAR(40) ,
+	is_default BOOLEAN DEFAULT 0 ,
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE inventory(
+	id SERIAL NOT NULL ,
+	store_id INTEGER NOT NULL ,
+	document_type_id INTEGER NOT NULL ,
+	document_number INTEGER NOT NULL , 
+	product_id INTEGER NOT NULL ,
+	user_id INTEGER NOT NULL,
+	amount_in DECIMAL(19,4) DEFAULT 0, 
+	amount_out DECIMAL(19,4) DEFAULT 0,
+	balance DECIMAL(19,4) DEFAULT 0 ,
+	measure_unit_id INTEGER NOT NULL ,
+	registration_date TIMESTAMP WITHOUT TIME ZONE DEFAULT now() ,	 
 	PRIMARY KEY (id)
 );
 
@@ -259,6 +291,12 @@ ALTER TABLE role_permission ADD constraint fk_role_permission_permission FOREIGN
 /*role_user*/
 ALTER TABLE role_user ADD constraint fk_role_user_role FOREIGN KEY (role_id) REFERENCES role (id);
 ALTER TABLE role_user ADD constraint fk_role_user_user FOREIGN KEY (user_id) REFERENCES user (id);
+/*inventory*/
+ALTER TABLE inventory ADD constraint fk_inventory_store FOREIGN KEY (store_id) REFERENCES store (id);
+ALTER TABLE inventory ADD constraint fk_inventory_product FOREIGN KEY (product_id) REFERENCES product (id);
+ALTER TABLE inventory ADD constraint fk_inventory_document_type FOREIGN KEY (document_type_id) REFERENCES document_type (id);
+ALTER TABLE inventory ADD constraint fk_inventory_user FOREIGN KEY (user_id) REFERENCES user (id);
+ALTER TABLE inventory ADD constraint fk_inventory_measure_unit FOREIGN KEY (measure_unit_id) REFERENCES measure_unit (id);
 
 
 /*Inserts measure_unit*/
