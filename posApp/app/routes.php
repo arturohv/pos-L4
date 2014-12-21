@@ -12,3 +12,11 @@
 */
 
 Route::get('/', 'HomeController@index');
+
+/*Menus*/
+Route::resource('menus', 'MainMenuController');
+Route::post('menus/{id}/update', 'MainMenuController@update');
+Route::get('menus/{id}/delete', 'MainMenuController@destroy');
+Route::get('menus/{id}/show', 'MainMenuController@show');
+Route::get('menus/{id}/subIndex', 'MainMenuController@subIndex');
+Route::get('menus/{id}/createSubMenu', 'MainMenuController@createSubMenu');

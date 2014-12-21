@@ -12,8 +12,19 @@ class BaseController extends Controller {
 	{
 		if ( ! is_null($this->layout))
 		{
-			$this->layout = View::make($this->layout);
+
+			$menus = DB::table('main_menu')					
+					->where('is_visible', true)
+                    ->orderBy('index')                    
+                    ->get();
+                   
+			$this->layout = View::make($this->layout)->nest('menu', 'menus.view', array(
+				'menus' => $menus
+			));
+			
 		}
 	}
+
+	
 
 }

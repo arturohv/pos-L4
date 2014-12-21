@@ -1,18 +1,18 @@
 ﻿CREATE TABLE product(
 	id SERIAL NOT NULL ,
-	product_type_id INTEGER NOT NULL ,	
+	product_type_id INTEGER NOT NULL ,
 	model_number VARCHAR(40) ,
 	product_name VARCHAR(60) ,
 	description TEXT ,
 	cost_price DECIMAL(19,4) NOT NULL DEFAULT 0,
-	sell_price DECIMAL(19,4) NOT NULL CHECK (sell_price > 0),
+	sell_price DECIMAL(19,4) NOT NULL DEFAULT 0,
 	tax_group_id INTEGER NOT NULL ,
 	measure_unit_id INTEGER NOT NULL ,	
 	is_active BOOLEAN DEFAULT true ,
 	is_visible BOOLEAN DEFAULT true ,
 	stock_max DECIMAL(19,4) DEFAULT 0 ,
 	stock_min	DECIMAL(19,4) DEFAULT 0 ,
-	discount_max DECIMAL(19,4) DEFAULT 0
+	discount_max DECIMAL(19,4) DEFAULT 0 , 
 	PRIMARY KEY (id)
 );
 
@@ -26,7 +26,7 @@ CREATE TABLE document_type(
 CREATE TABLE store(
 	id SERIAL NOT NULL ,
 	store_name VARCHAR(40) ,
-	is_default BOOLEAN DEFAULT 0 ,
+	is_default BOOLEAN DEFAULT FALSE ,
 	PRIMARY KEY (id)
 );
 
@@ -201,7 +201,7 @@ CREATE TABLE product_images (
 );
 
 CREATE TABLE "user" (
-	id INTEGER NOT NULL,
+	id SERIAL NOT NULL,
 	user_name VARCHAR(60) NOT NULL ,
 	email VARCHAR(60) NOT NULL ,
 	password VARCHAR(60) NOT NULL,
@@ -214,16 +214,17 @@ CREATE TABLE "user" (
 );
 
 CREATE TABLE permission(
-	id INTEGER NOT NULL,
-	controller_name VARCHAR(60) NOT NULL ,
-	action_name VARCHAR(60) NOT NULL ,
+	id SERIAL NOT NULL ,
+	menu_id INTEGER NOT NULL ,
+	controller_name VARCHAR(60) NULL ,
+	action_name VARCHAR(60) NULL ,
 	description text ,
 	PRIMARY KEY (id) ,
-	UNIQUE(controller_name,action)
+	UNIQUE(controller_name,action_name)
 );
 
-CREATE TABLE role(
-	id INTEGER NOT NULL ,
+CREATE TABLE "role"(
+	id SERIAL NOT NULL ,
 	role_name VARCHAR(60) NOT NULL ,	
 	description text ,
 	PRIMARY KEY (id) ,
@@ -231,7 +232,7 @@ CREATE TABLE role(
 );
 
 CREATE TABLE role_permission(
-	id INTEGER NOT NULL ,
+	id SERIAL NOT NULL ,
 	role_id INTEGER NOT NULL ,	
 	permission_id INTEGER NOT NULL ,
 	PRIMARY KEY (id) ,
@@ -239,13 +240,27 @@ CREATE TABLE role_permission(
 );
 
 CREATE TABLE role_user(
-	id INTEGER NOT NULL ,
+	id SERIAL NOT NULL ,
 	role_id INTEGER NOT NULL ,	
 	user_id INTEGER NOT NULL ,
 	PRIMARY KEY (id) ,
 	UNIQUE(role_id,user_id)
 );
 
+CREATE TABLE main_menu(
+	id SERIAL NOT NULL ,
+	parent_id INTEGER NULL ,
+	url VARCHAR(100) ,
+	name VARCHAR (40) ,
+	description TEXT ,
+	is_visible BOOLEAN DEFAULT true ,	
+	"index" INTEGER DEFAULT 0,
+	PRIMARY KEY (id)
+);
+
+
+/*main_menu*/
+ALTER TABLE main_menu ADD constraint fk_main_menu_parent FOREIGN KEY (parent_id) REFERENCES main_menu (id);
 /*user*/
 ALTER TABLE "user" ADD constraint fk_user_person FOREIGN KEY (id) REFERENCES person (id);
 /*product_images*/
@@ -289,15 +304,16 @@ ALTER TABLE tax_group ADD constraint fk_tax_group_tax_type FOREIGN KEY (tax_type
 ALTER TABLE role_permission ADD constraint fk_role_permission_role FOREIGN KEY (role_id) REFERENCES role (id);
 ALTER TABLE role_permission ADD constraint fk_role_permission_permission FOREIGN KEY (permission_id) REFERENCES permission (id);					
 /*role_user*/
-ALTER TABLE role_user ADD constraint fk_role_user_role FOREIGN KEY (role_id) REFERENCES role (id);
-ALTER TABLE role_user ADD constraint fk_role_user_user FOREIGN KEY (user_id) REFERENCES user (id);
+ALTER TABLE role_user ADD constraint fk_role_user_role FOREIGN KEY (role_id) REFERENCES "role" (id);
+ALTER TABLE role_user ADD constraint fk_role_user_user FOREIGN KEY (user_id) REFERENCES "user" (id);
 /*inventory*/
 ALTER TABLE inventory ADD constraint fk_inventory_store FOREIGN KEY (store_id) REFERENCES store (id);
 ALTER TABLE inventory ADD constraint fk_inventory_product FOREIGN KEY (product_id) REFERENCES product (id);
 ALTER TABLE inventory ADD constraint fk_inventory_document_type FOREIGN KEY (document_type_id) REFERENCES document_type (id);
-ALTER TABLE inventory ADD constraint fk_inventory_user FOREIGN KEY (user_id) REFERENCES user (id);
+ALTER TABLE inventory ADD constraint fk_inventory_user FOREIGN KEY (user_id) REFERENCES "user" (id);
 ALTER TABLE inventory ADD constraint fk_inventory_measure_unit FOREIGN KEY (measure_unit_id) REFERENCES measure_unit (id);
-
+/*permission*/
+ALTER TABLE permission ADD constraint fk_permission_menu FOREIGN KEY (menu_id) REFERENCES main_menu (id);
 
 /*Inserts measure_unit*/
 insert into measure_unit (measure_unit_name, symbol) values ('Unidad','U');
@@ -329,6 +345,23 @@ insert into document_status (status_name) values ('Parcialmente Procesada');
 insert into document_status (status_name) values ('Procesada');
 insert into document_status (status_name) values ('Impresa');
 insert into document_status (status_name) values ('Anulado');
+/*insert main_menu*/
+insert into main_menu (parent_id,url,"name",description,is_visible,"index") values (null,null,'Módulo Seguridad','Descripción del Módulo de Seguridad',true,100);
+insert into main_menu (parent_id,url,"name",description,is_visible,"index") values (null,null,'Módulo Personas','Descripción del Módulo de Personas',true,200);
+insert into main_menu (parent_id,url,"name",description,is_visible,"index") values (null,null,'Módulo Catágolo','Descripción del Módulo de Catágolo de Productos',true,300);
+insert into main_menu (parent_id,url,"name",description,is_visible,"index") values (null,null,'Módulo Ventas','Descripción del Módulo de Ventas',true,400);
+insert into main_menu (parent_id,url,"name",description,is_visible,"index") values (null,null,'Módulo Inventario','Descripción del Módulo de Inventario',true,500);
+insert into main_menu (parent_id,url,"name",description,is_visible,"index") values (null,null,'Módulo Configuración','Descripción del Módulo de Configuración',true,600);
+/*Submenus de Seguridad*/
+insert into main_menu (parent_id,url,"name",description,is_visible,"index") values (1,'menus','Editor de Menus','Descripción del Editor de Menus',true,101);	
+/*insert Permission*/
+insert into permission(menu_id,controller_name,action_name,description) values(1,null,null,'Seguridad');
+insert into permission(menu_id,controller_name,action_name,description) values(2,null,null,'Personas');
+insert into permission(menu_id,controller_name,action_name,description) values(3,null,null,'Catágolo');
+insert into permission(menu_id,controller_name,action_name,description) values(4,null,null,'Ventas');
+insert into permission(menu_id,controller_name,action_name,description) values(5,null,null,'Inventario');
+insert into permission(menu_id,controller_name,action_name,description) values(6,null,null,'Configuración');
+
 
 
 

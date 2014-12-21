@@ -66,7 +66,7 @@ return array(
 		'pgsql' => array(
 			'driver'   => 'pgsql',
 			'host'     => 'localhost',
-			'database' => 'arcanna',
+			'database' => 'taranis',
 			'username' => 'arturohv',
 			'password' => 'bastos',
 			'charset'  => 'utf8',

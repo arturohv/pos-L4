@@ -18,10 +18,11 @@ class HomeController extends BaseController {
 	public function index()
 	{
     			
-		$this->layout->title = 'Fill';
+		$this->layout->title = 'Editor de Menus';		
+		$this->layout->titulo = 'Bienvenido a la Pagina Principal';
         $this->layout->nest(
             'content',
-            'vistas.fill'
+            'main.home'
         );
 	}
 
