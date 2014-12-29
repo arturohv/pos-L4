@@ -12,9 +12,10 @@ class MainMenuController extends \BaseController {
 	public function index()
 	{		
 		$menus = DB::table('main_menu')
-					->where('parent_id',null)
-                    ->orderBy('index')                    
-                    ->get();
+					->where('parent_id',null)					
+                    ->orderBy('index')
+                    ->paginate(5);                    
+                    
               
 		$this->layout->title = 'Lista de Menu';
 		$this->layout->titulo = $this->titulo_text;
@@ -32,7 +33,9 @@ class MainMenuController extends \BaseController {
 		$menus = DB::table('main_menu')
 					->where('parent_id',$id)
                     ->orderBy('index')                    
-                    ->get();
+                    ->paginate(5); 
+
+        $parent = MainMenu::find($id);     
               
 		$this->layout->title = 'Lista de Menu';
 		$this->layout->titulo = $this->titulo_text;
@@ -41,7 +44,8 @@ class MainMenuController extends \BaseController {
 			'menus.subIndex',
 			array(
 				'menus' => $menus,
-				'parent' => $id
+				'parentId' => $id,
+				'parent' => $parent
 			)
 		);
 	}
@@ -66,9 +70,7 @@ class MainMenuController extends \BaseController {
 	{
 		$subMenu = DB::table('main_menu')
 					->where('id',$id)                                     
-                    ->get();
-
-                    
+                    ->get();                   
 
 		$this->layout->title = 'Nuevo Elemento';
 		$this->layout->titulo = $this->titulo_text;;
@@ -125,6 +127,20 @@ class MainMenuController extends \BaseController {
 		$this->layout->nest(
 			'content',
 			'menus.edit',
+			array(
+				'menu' => $menu
+			)
+		);
+	}
+
+	public function editSubMenu($id)
+	{
+		$this->layout->title = 'Editar Elemento';
+		$this->layout->titulo = $this->titulo_text;;
+		$menu = MainMenu::find($id);
+		$this->layout->nest(
+			'content',
+			'menus.editSubMenu',
 			array(
 				'menu' => $menu
 			)

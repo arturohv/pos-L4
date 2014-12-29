@@ -23,7 +23,7 @@
                                     <tr>                                        
                                         <th>Elemento Padre</th>
                                         <th>Orden</th>                                         
-                                        <th></th>                                         
+                                        <th>Acciones</th>                                         
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -33,11 +33,11 @@
                                         <td>{{ $menu->name }}</td>
                                         <td>{{ $menu->index }}</td>
                                         <td>
-                                        {{link_to("menus/$menu->id/subIndex", '', $attributes = array('Class'=>'btn btn-default btn-xs glyphicon glyphicon-th','title' => 'Editar Sub-Menus'), $secure = null);}}                             
+                                        {{link_to("menus/$menu->id/subIndex", '', $attributes = array('Class'=>'btn btn-default btn-xs glyphicon glyphicon-th','title' => 'Ir a Sub-Menus'), $secure = null);}}                             
 
-                                        {{link_to("menus/$menu->id/edit", '', $attributes = array('Class'=>'btn btn-default btn-xs glyphicon glyphicon-pencil'), $secure = null);}}
+                                        {{link_to("menus/$menu->id/edit", '', $attributes = array('Class'=>'btn btn-default btn-xs glyphicon glyphicon-pencil','title' => 'Editar'), $secure = null);}}
 
-                                        {{link_to("menus/$menu->id/delete", '', $attributes = array('Class'=>'btn btn-default btn-xs glyphicon glyphicon-trash'), $secure = null);}}
+                                        {{link_to("menus/$menu->id/delete", '', $attributes = array('Class'=>'btn btn-default btn-xs glyphicon glyphicon-trash','title' => 'Eliminar'), $secure = null);}}
                                         </td>
                                     </tr>
                                     @endforeach
@@ -49,6 +49,13 @@
                         <!-- /.table-responsive -->
                     </div>
                 </div>             
+            </div>
+            <div class="panel-footer">
+                <nav>
+                    <ul class="pagination">
+                        {{$menus->links()}}
+                    </ul>
+                </nav>
             </div>                    
         </div>
     </div>

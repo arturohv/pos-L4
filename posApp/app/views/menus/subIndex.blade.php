@@ -2,12 +2,10 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <i class="glyphicon glyphicon-th-list"></i> Editor de Sub-Menus 
+                <i class="glyphicon glyphicon-th-list"></i> Editor de Sub-Menus ({{$parent->name}})
                <div class="pull-right">
-                    <div class="btn-group">
-                    
-                    {{link_to("menus/$parent/createSubMenu", 'Nuevo', $attributes = array('Class'=>'btn btn-default btn-xs'), $secure = null);}}                                    
-                    
+                    <div class="btn-group">                                                        
+                    {{link_to("menus/$parent->id/createSubMenu", '', $attributes = array('Class'=>'btn btn-default btn-xs glyphicon glyphicon-plus','title' => 'Agregar Elemento Hijo'), $secure = null);}}   
                     </div>
                 </div>       
             </div>
@@ -15,7 +13,7 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="col-lg-6 col-lg-offset-3"> 
+                        <div class="col-lg-10 col-lg-offset-1"> 
                         <div class="table-responsive">
                             @if (Session::has('message'))
                                 <div class="alert alert-info">{{ Session::get('message') }}</div>
@@ -26,7 +24,7 @@
                                     	<th>Elemento</th>                                        
                                         <th>Ruta</th>
                                         <th>Orden</th>                                         
-                                        <th></th>                                         
+                                        <th>Acciones</th>                                         
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -39,11 +37,11 @@
                                         <td>
                                         
 
-                                        {{link_to("menus/$menu->id/show", '', $attributes = array('Class'=>'btn btn-default btn-xs glyphicon glyphicon-eye-open'), $secure = null);}}
+                                        {{link_to("menus/$menu->id/show", '', $attributes = array('Class'=>'btn btn-default btn-xs glyphicon glyphicon-eye-open','title' => 'Detalles'), $secure = null);}}
 
-                                        {{link_to("menus/$menu->id/edit", '', $attributes = array('Class'=>'btn btn-default btn-xs glyphicon glyphicon-pencil'), $secure = null);}}
+                                        {{link_to("menus/$menu->id/editSubMenu", '', $attributes = array('Class'=>'btn btn-default btn-xs glyphicon glyphicon-pencil','title' => 'Editar'), $secure = null);}}
 
-                                        {{link_to("menus/$menu->id/delete", '', $attributes = array('Class'=>'btn btn-default btn-xs glyphicon glyphicon-trash'), $secure = null);}}
+                                        {{link_to("menus/$menu->id/delete", '', $attributes = array('Class'=>'btn btn-default btn-xs glyphicon glyphicon-trash','title' => 'Eliminar'), $secure = null);}}
                                         </td>
                                     </tr>
                                     @endforeach
@@ -55,7 +53,15 @@
                         <!-- /.table-responsive -->
                     </div>
                 </div>             
-            </div>                    
+            </div>
+             <div class="panel-footer">
+                <nav>
+                    <ul class="pagination">
+                        {{$menus->links()}}
+
+                    </ul>
+                </nav>
+            </div>                              
         </div>
     </div>
 </div>

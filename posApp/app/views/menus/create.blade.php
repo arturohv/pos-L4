@@ -17,21 +17,18 @@
 
                         <div class="form-group">
                             {{ Form::label('description', 'Descripción') }}                         
-                            {{Form::textarea('description', Input::old('description'), array('class' => 'form-control input-xlarge', 'required' => 'true','rows'=>'3'))}}             
+                            {{Form::textarea('description', Input::old('description'), array('class' => 'form-control input-xlarge', 'required' => 'true','rows'=>'3'))}}
                         </div>
 
-                        <div class="form-group">
-                                                            
+                        <div class="form-group">                                                    
                             {{Form::checkbox('is_visible', Input::old('is_visible'), array('class' => 'form-control input-xlarge', 'required' => 'true'))}} 
                             {{ Form::label('is_visible', 'Es Visible') }}                        
                         </div>         
 
                         <div class="form-group">
                             {{ Form::label('index', 'Orden') }}                         
-                            {{Form::number('index', Input::old('index'), array('class' => 'form-control input-xlarge', 'required' => 'true'))}}                        
+                            {{Form::number('index', Input::old('index'), array('class' => 'form-control input-xlarge', 'required' => 'true'))}}                    
                         </div>
-
-
                 
                         {{Form::submit('Guardar', array('Class'=>'btn btn-default'))}} 
                         {{link_to("menus", 'Cancelar', $attributes = array('Class'=>'btn btn-default'), $secure = null);}}   
