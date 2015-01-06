@@ -1,5 +1,6 @@
 ﻿CREATE TABLE product(
 	id SERIAL NOT NULL ,
+	barcode VARCHAR(40) ,
 	product_type_id INTEGER NOT NULL ,
 	model_number VARCHAR(40) ,
 	product_name VARCHAR(60) ,
@@ -13,7 +14,9 @@
 	stock_max DECIMAL(19,4) DEFAULT 0 ,
 	stock_min	DECIMAL(19,4) DEFAULT 0 ,
 	discount_max DECIMAL(19,4) DEFAULT 0 , 
-	PRIMARY KEY (id)
+	PRIMARY KEY (id),
+	UNIQUE(barcode)
+
 );
 
 CREATE TABLE document_type(
@@ -201,7 +204,7 @@ CREATE TABLE product_images (
 );
 
 CREATE TABLE "user" (
-	id SERIAL NOT NULL,
+	id INTEGER NOT NULL,
 	user_name VARCHAR(60) NOT NULL ,
 	email VARCHAR(60) NOT NULL ,
 	password VARCHAR(60) NOT NULL,
@@ -361,8 +364,9 @@ insert into permission(menu_id,controller_name,action_name,description) values(3
 insert into permission(menu_id,controller_name,action_name,description) values(4,null,null,'Ventas');
 insert into permission(menu_id,controller_name,action_name,description) values(5,null,null,'Inventario');
 insert into permission(menu_id,controller_name,action_name,description) values(6,null,null,'Configuración');
-
-
+/*SuperUser*/
+insert into person (nip,first_name, last_name) values ('admin','Administrador','Administrador');
+insert into "user"(id,user_name, email, password) values (1,'admin','admin@tusistema.net','password');
 
 
 

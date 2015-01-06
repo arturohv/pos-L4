@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'UserController@index');
 
 /*Menus*/
 Route::resource('menus', 'MainMenuController');
@@ -21,3 +21,6 @@ Route::get('menus/{id}/show', 'MainMenuController@show');
 Route::get('menus/{id}/subIndex', 'MainMenuController@subIndex');
 Route::get('menus/{id}/createSubMenu', 'MainMenuController@createSubMenu');
 Route::get('menus/{id}/editSubMenu', 'MainMenuController@editSubMenu');
+
+/*Login*/
+Route::post('users/signin', 'UserController@postSignin');
