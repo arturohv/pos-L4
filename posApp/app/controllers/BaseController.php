@@ -13,10 +13,13 @@ class BaseController extends Controller {
 		if ( ! is_null($this->layout))
 		{
 
-			$menus = DB::table('main_menu')					
+			/*$menus = DB::table('main_menu')					
 					->where('is_visible', true)
                     ->orderBy('index')                    
-                    ->get();
+                    ->get();*/
+
+			$menus = MainMenu::getMenuView();
+			
                    
 			$this->layout = View::make($this->layout)->nest('menu', 'menus.view', array(
 				'menus' => $menus

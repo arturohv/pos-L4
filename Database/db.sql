@@ -355,8 +355,13 @@ insert into main_menu (parent_id,url,"name",description,is_visible,"index") valu
 insert into main_menu (parent_id,url,"name",description,is_visible,"index") values (null,null,'Módulo Ventas','Descripción del Módulo de Ventas',true,400);
 insert into main_menu (parent_id,url,"name",description,is_visible,"index") values (null,null,'Módulo Inventario','Descripción del Módulo de Inventario',true,500);
 insert into main_menu (parent_id,url,"name",description,is_visible,"index") values (null,null,'Módulo Configuración','Descripción del Módulo de Configuración',true,600);
+insert into main_menu (parent_id,url,"name",description,is_visible,"index") values (null,null,'Módulo Reportes','Descripción del Módulo de Reportes',true,700);
 /*Submenus de Seguridad*/
-insert into main_menu (parent_id,url,"name",description,is_visible,"index") values (1,'menus','Editor de Menus','Descripción del Editor de Menus',true,101);	
+insert into main_menu (parent_id,url,"name",description,is_visible,"index") values (1,'menus','Editor de Menus','Descripción del Editor de Menus',true,101);
+insert into main_menu (parent_id,url,"name",description,is_visible,"index") values (8,null,'Personas','Descripción del Módulo de Reportes de Personas',true,701);
+insert into main_menu (parent_id,url,"name",description,is_visible,"index") values (9,'rptUsuarios','Reporte de Usuarios','Descripción del Módulo de Reportes de Usuarios',true,702);
+insert into main_menu (parent_id,url,"name",description,is_visible,"index") values (9,'rptClientes','Reporte de Clientes','Descripción del Módulo de Reportes de Clientes',true,703);
+
 /*insert Permission*/
 insert into permission(menu_id,controller_name,action_name,description) values(1,null,null,'Seguridad');
 insert into permission(menu_id,controller_name,action_name,description) values(2,null,null,'Personas');

@@ -11,7 +11,8 @@
 |
 */
 
-Route::get('/', 'UserController@index');
+//Route::get('/', 'UserController@index');
+Route::get('/', 'HomeController@index');
 
 /*Menus*/
 Route::resource('menus', 'MainMenuController');

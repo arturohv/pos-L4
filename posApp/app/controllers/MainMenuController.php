@@ -11,12 +11,20 @@ class MainMenuController extends \BaseController {
 
 	public function index()
 	{		
-		$menus = DB::table('main_menu')
+		/*$menus = DB::table('main_menu')
 					->where('parent_id',null)					
                     ->orderBy('index')
-                    ->paginate(5);                    
-                    
-              
+                    ->paginate(5);*/
+		
+		$data = MainMenu::getMenuList();
+
+		$perPage = 5;
+		$total = count($data);
+		$start = (Paginator::getCurrentPage() - 1) * $perPage;
+		$sliced = array_slice($data, $start, $perPage);
+		// Create a paginator instance.
+		$menus = Paginator::make($sliced, $total, $perPage);
+             
 		$this->layout->title = 'Lista de Menu';
 		$this->layout->titulo = $this->titulo_text;
 		$this->layout->nest(

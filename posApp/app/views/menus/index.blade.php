@@ -21,7 +21,9 @@
                             <table class="table table-hover table-striped" id="lista">
                                 <thead>
                                     <tr>                                        
-                                        <th>Elemento Padre</th>
+                                        <th>Nombre - Elemento</th>                                        
+                                        <th>Ruta</th>
+                                        <th>Elemento - Padre</th>
                                         <th>Orden</th>                                         
                                         <th>Acciones</th>                                         
                                     </tr>
@@ -31,10 +33,11 @@
                                     <tr>
                                          
                                         <td>{{ $menu->name }}</td>
+                                        <td>{{ $menu->url }}</td>
+                                        <td>{{ $menu->parent_name }}</td>                                        
                                         <td>{{ $menu->index }}</td>
                                         <td>
-                                        {{link_to("menus/$menu->id/subIndex", '', $attributes = array('Class'=>'btn btn-default btn-xs glyphicon glyphicon-th','title' => 'Ir a Sub-Menus'), $secure = null);}}                             
-
+                                        
                                         {{link_to("menus/$menu->id/edit", '', $attributes = array('Class'=>'btn btn-default btn-xs glyphicon glyphicon-pencil','title' => 'Editar'), $secure = null);}}
 
                                         {{link_to("menus/$menu->id/delete", '', $attributes = array('Class'=>'btn btn-default btn-xs glyphicon glyphicon-trash','title' => 'Eliminar'), $secure = null);}}

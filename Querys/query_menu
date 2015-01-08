@@ -1,0 +1,8 @@
+﻿select mn.id, mn.parent_id, mn.url, mn.name, 
+(Select mnp.name from main_menu mnp where mnp.id = mn.parent_id) as parent_name, mn.index,
+(Select count(id) from main_menu mnc where mn.id = mnc.parent_id) as num_children
+from main_menu mn order by index
+
+
+
+
