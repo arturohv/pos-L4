@@ -21,7 +21,7 @@ class BaseController extends Controller {
 			$menus = MainMenu::getMenuView();
 			
                    
-			$this->layout = View::make($this->layout)->nest('menu', 'menus.view', array(
+			$this->layout = View::make($this->layout)->nest('menu', 'menus.navigation', array(
 				'menus' => $menus
 			));
 			
