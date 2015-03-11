@@ -17,7 +17,8 @@ class HomeController extends BaseController {
 
 	public function index()
 	{
-    			
+    	$items = MainMenu::tree();
+
 		$this->layout->title = 'Página Principal';		
 		$this->layout->titulo = 'Bienvenido a la Pagina Principal';
         $this->layout->nest(

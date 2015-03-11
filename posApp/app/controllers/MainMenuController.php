@@ -11,52 +11,10 @@ class MainMenuController extends \BaseController {
 
 	public function index()
 	{		
-		/*$menus = DB::table('main_menu')
-					->where('parent_id',null)					
-                    ->orderBy('index')
-                    ->paginate(5);*/
 		
-		$data = MainMenu::getMenuList();
-
-		$perPage = 5;
-		$total = count($data);
-		$start = (Paginator::getCurrentPage() - 1) * $perPage;
-		$sliced = array_slice($data, $start, $perPage);
-		// Create a paginator instance.
-		$menus = Paginator::make($sliced, $total, $perPage);
-             
-		$this->layout->title = 'Lista de Menu';
-		$this->layout->titulo = $this->titulo_text;
-		$this->layout->nest(
-			'content',
-			'menus.index',
-			array(
-				'menus' => $menus
-			)
-		);
 	}
 
-	public function subIndex($id)
-	{		
-		$menus = DB::table('main_menu')
-					->where('parent_id',$id)
-                    ->orderBy('index')                    
-                    ->paginate(5); 
-
-        $parent = MainMenu::find($id);     
-              
-		$this->layout->title = 'Lista de Menu';
-		$this->layout->titulo = $this->titulo_text;
-		$this->layout->nest(
-			'content',
-			'menus.subIndex',
-			array(
-				'menus' => $menus,
-				'parentId' => $id,
-				'parent' => $parent
-			)
-		);
-	}
+	
 
 
 	/**
@@ -66,29 +24,12 @@ class MainMenuController extends \BaseController {
 	 */
 	public function create()
 	{
-		$this->layout->title = 'Nuevo Elemento';
-		$this->layout->titulo = $this->titulo_text;;
-		$this->layout->nest(
-			'content',
-			'menus.create'			
-		);
+		
 	}
 
 	public function createSubMenu($id)
 	{
-		$subMenu = DB::table('main_menu')
-					->where('id',$id)                                     
-                    ->get();                   
-
-		$this->layout->title = 'Nuevo Elemento';
-		$this->layout->titulo = $this->titulo_text;;
-		$this->layout->nest(
-			'content',
-			'menus.createSubMenu',
-			array(
-				'subMenu' => $subMenu
-				)			
-		);
+		
 	}
 
 
@@ -100,23 +41,7 @@ class MainMenuController extends \BaseController {
 	
 	public function store()
 	{
-		$parent_id = Input::get('parent_id');
-		$url = Input::get('url');
-		$name = Input::get('name');	
-		$description = Input::get('description');	
-		$is_visible = Input::get('is_visible');	
-		$index = Input::get('index');	
-
-		$menu = new MainMenu();
-		$menu->parent_id = $parent_id;
-		$menu->url = $url;
-		$menu->name = $name;
-		$menu->description = $description;
-		$menu->is_visible = $is_visible;
-		$menu->index = $index;
-		$menu->save();
-		Session::flash('message', 'Registro guardado satisfactoriamente!');
-		return Redirect::to('menus');
+		
 	}
 
 
@@ -129,31 +54,10 @@ class MainMenuController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		$this->layout->title = 'Editar Elemento';
-		$this->layout->titulo = $this->titulo_text;;
-		$menu = MainMenu::find($id);
-		$this->layout->nest(
-			'content',
-			'menus.edit',
-			array(
-				'menu' => $menu
-			)
-		);
+		
 	}
 
-	public function editSubMenu($id)
-	{
-		$this->layout->title = 'Editar Elemento';
-		$this->layout->titulo = $this->titulo_text;;
-		$menu = MainMenu::find($id);
-		$this->layout->nest(
-			'content',
-			'menus.editSubMenu',
-			array(
-				'menu' => $menu
-			)
-		);
-	}
+	
 
 
 	/**
@@ -164,23 +68,7 @@ class MainMenuController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$parent_id = Input::get('parent_id');
-		$url = Input::get('url');
-		$name = Input::get('name');	
-		$description = Input::get('description');	
-		$is_visible = Input::get('is_visible');	
-		$index = Input::get('index');	
 		
-		$menu = MainMenu::find($id);
-		$menu->parent_id = $parent_id;
-		$menu->url = $url;
-		$menu->name = $name;
-		$menu->description = $description;
-		$menu->is_visible = $is_visible;
-		$menu->index = $index;
-		$menu->save();
-		Session::flash('message', 'Registro actualizado satisfactoriamente!');
-		return Redirect::to('menus');
 	}
 
 
@@ -192,10 +80,7 @@ class MainMenuController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		$menu = MainMenu::find($id);
-		$menu->delete();
-		Session::flash('message', 'Registro eliminado satisfactoriamente!');
-		return Redirect::to('menus');
+		
 	}
 
 

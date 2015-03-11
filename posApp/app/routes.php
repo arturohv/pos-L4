@@ -11,17 +11,19 @@
 |
 */
 
-//Route::get('/', 'UserController@index');
-Route::get('/', 'HomeController@index');
-
-/*Menus*/
-Route::resource('menus', 'MainMenuController');
-Route::post('menus/{id}/update', 'MainMenuController@update');
-Route::get('menus/{id}/delete', 'MainMenuController@destroy');
-Route::get('menus/{id}/show', 'MainMenuController@show');
-Route::get('menus/{id}/subIndex', 'MainMenuController@subIndex');
-Route::get('menus/{id}/createSubMenu', 'MainMenuController@createSubMenu');
-Route::get('menus/{id}/editSubMenu', 'MainMenuController@editSubMenu');
-
+Route::get('/', 'PersonController@index');
+//Route::get('/', 'HomeController@index');
 /*Login*/
 Route::post('users/signin', 'UserController@postSignin');
+
+/*Persons*/
+Route::resource('persons', 'PersonController');
+Route::post('persons/{id}/update', 'PersonController@update');
+Route::get('persons/{id}/delete', 'PersonController@destroy');
+Route::get('persons/{id}/show', 'PersonController@show');
+
+/*Users*/
+Route::resource('users', 'UserController');
+Route::post('users/{id}/update', 'UserController@update');
+Route::get('users/{id}/delete', 'UserController@destroy');
+Route::get('users/{id}/show', 'UserController@show');

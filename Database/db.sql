@@ -80,7 +80,8 @@ CREATE TABLE person(
 	nip VARCHAR(30) NOT NULL ,
 	first_name VARCHAR(60) NOT NULL ,
 	last_name VARCHAR(40) ,
-	PRIMARY KEY (id)	
+	PRIMARY KEY (id),
+	UNIQUE(nip)	
 );
 
 CREATE TABLE address_type(
@@ -256,8 +257,7 @@ CREATE TABLE main_menu(
 	url VARCHAR(100) ,
 	name VARCHAR (40) ,
 	description TEXT ,
-	is_visible BOOLEAN DEFAULT true ,	
-	"index" INTEGER DEFAULT 0,
+	is_visible BOOLEAN DEFAULT true,	
 	PRIMARY KEY (id)
 );
 
@@ -349,18 +349,18 @@ insert into document_status (status_name) values ('Procesada');
 insert into document_status (status_name) values ('Impresa');
 insert into document_status (status_name) values ('Anulado');
 /*insert main_menu*/
-insert into main_menu (parent_id,url,"name",description,is_visible,"index") values (null,null,'Módulo Seguridad','Descripción del Módulo de Seguridad',true,100);
-insert into main_menu (parent_id,url,"name",description,is_visible,"index") values (null,null,'Módulo Personas','Descripción del Módulo de Personas',true,200);
-insert into main_menu (parent_id,url,"name",description,is_visible,"index") values (null,null,'Módulo Catágolo','Descripción del Módulo de Catágolo de Productos',true,300);
-insert into main_menu (parent_id,url,"name",description,is_visible,"index") values (null,null,'Módulo Ventas','Descripción del Módulo de Ventas',true,400);
-insert into main_menu (parent_id,url,"name",description,is_visible,"index") values (null,null,'Módulo Inventario','Descripción del Módulo de Inventario',true,500);
-insert into main_menu (parent_id,url,"name",description,is_visible,"index") values (null,null,'Módulo Configuración','Descripción del Módulo de Configuración',true,600);
-insert into main_menu (parent_id,url,"name",description,is_visible,"index") values (null,null,'Módulo Reportes','Descripción del Módulo de Reportes',true,700);
+insert into main_menu (parent_id,url,"name",description,is_visible) values (null,null,'Módulo Seguridad','Descripción del Módulo de Seguridad',true);
+insert into main_menu (parent_id,url,"name",description,is_visible) values (null,null,'Módulo Personas','Descripción del Módulo de Personas',true);
+insert into main_menu (parent_id,url,"name",description,is_visible) values (null,null,'Módulo Catágolo','Descripción del Módulo de Catágolo de Productos',true);
+insert into main_menu (parent_id,url,"name",description,is_visible) values (null,null,'Módulo Ventas','Descripción del Módulo de Ventas',true);
+insert into main_menu (parent_id,url,"name",description,is_visible) values (null,null,'Módulo Inventario','Descripción del Módulo de Inventario',true);
+insert into main_menu (parent_id,url,"name",description,is_visible) values (null,null,'Módulo Configuración','Descripción del Módulo de Configuración',true);
+insert into main_menu (parent_id,url,"name",description,is_visible) values (null,null,'Módulo Reportes','Descripción del Módulo de Reportes',true);
 /*Submenus de Seguridad*/
-insert into main_menu (parent_id,url,"name",description,is_visible,"index") values (1,'menus','Editor de Menus','Descripción del Editor de Menus',true,101);
-insert into main_menu (parent_id,url,"name",description,is_visible,"index") values (8,null,'Personas','Descripción del Módulo de Reportes de Personas',true,701);
-insert into main_menu (parent_id,url,"name",description,is_visible,"index") values (9,'rptUsuarios','Reporte de Usuarios','Descripción del Módulo de Reportes de Usuarios',true,702);
-insert into main_menu (parent_id,url,"name",description,is_visible,"index") values (9,'rptClientes','Reporte de Clientes','Descripción del Módulo de Reportes de Clientes',true,703);
+insert into main_menu (parent_id,url,"name",description,is_visible) values (1,'menus','Editor de Menus','Descripción del Editor de Menus',true);
+insert into main_menu (parent_id,url,"name",description,is_visible) values (8,null,'Personas','Descripción del Módulo de Reportes de Personas',true);
+insert into main_menu (parent_id,url,"name",description,is_visible) values (9,'rptUsuarios','Reporte de Usuarios','Descripción del Módulo de Reportes de Usuarios',true);
+insert into main_menu (parent_id,url,"name",description,is_visible) values (9,'rptClientes','Reporte de Clientes','Descripción del Módulo de Reportes de Clientes',true);
 
 /*insert Permission*/
 insert into permission(menu_id,controller_name,action_name,description) values(1,null,null,'Seguridad');
