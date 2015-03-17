@@ -27,3 +27,4 @@ Route::resource('users', 'UserController');
 Route::post('users/{id}/update', 'UserController@update');
 Route::get('users/{id}/delete', 'UserController@destroy');
 Route::get('users/{id}/show', 'UserController@show');
+Route::get('users/{id}/select', 'UserController@select');

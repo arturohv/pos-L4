@@ -33,14 +33,43 @@ class UserController extends BaseController {
 	 *
 	 * @return Response
 	 */
+
+	
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return Response
+	 */
 	public function create()
 	{
+		$persons = DB::table('person')
+                    ->orderBy('last_name')                    
+                    ->paginate(5);
+        
+
 		$this->layout->title = 'Seguridad';
-		$this->layout->titulo = 'Agregar Usuario';
+		$this->layout->titulo = 'Seleccione Persona';
+		$this->layout->nest(
+			'content',
+			'users.select',
+			array(
+					'persons' => $persons
+				)
+		);
+	}
+
+
+	public function select($id)
+	{
+		$this->layout->title = 'Seguridad';
+		$this->layout->titulo = 'Crear Usuario';
+		$person = Person::find($id);
 		$this->layout->nest(
 			'content',
 			'users.create',
-			array()
+			array(
+				'person' => $person
+			)
 		);
 	}
 
@@ -52,13 +81,16 @@ class UserController extends BaseController {
 	 */
 	public function store()
 	{
+		$id = Input::get('id');
 		$user_name = Input::get('user_name');
 	    $email = Input::get('email');
 	    $password = Input::get('password');
+	    $password = Hash::make($password);
 		$is_active = Input::get('is_active');
 		$is_admin = Input::get('is_admin');
 
 		$user = new User();
+		$user->id = $id;
 		$user->user_name = $user_name;
 		$user->email = $email;
 		$user->password = $password;
@@ -81,7 +113,7 @@ class UserController extends BaseController {
 	{
 		$this->layout->title = 'Seguridad';
 		$this->layout->titulo = 'Detalle de Usuario';
-		$user = Usuario::find($id);
+		$user = User::find($id);
 		$this->layout->nest(
 			'content',
 			'users.show',

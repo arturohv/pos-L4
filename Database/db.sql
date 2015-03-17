@@ -371,7 +371,7 @@ insert into permission(menu_id,controller_name,action_name,description) values(5
 insert into permission(menu_id,controller_name,action_name,description) values(6,null,null,'Configuración');
 /*SuperUser*/
 insert into person (nip,first_name, last_name) values ('admin','Administrador','Administrador');
-insert into "user"(id,user_name, email, password) values (1,'admin','admin@tusistema.net','password');
+
 
 
 

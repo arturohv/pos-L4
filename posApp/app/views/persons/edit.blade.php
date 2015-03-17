@@ -25,7 +25,7 @@
                         </div>                                   
                 
                         {{Form::submit('Guardar', array('Class'=>'btn btn-default'))}} 
-                        {{link_to("clientes", 'Cancelar', $attributes = array('Class'=>'btn btn-default'), $secure = null);}}   
+                        {{link_to("persons", 'Cancelar', $attributes = array('Class'=>'btn btn-default'), $secure = null);}}   
                     </div>
                  </div> 
             </div>
