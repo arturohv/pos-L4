@@ -11,7 +11,7 @@
     <br>            
         <div class="panel panel-default">
             <div class="panel-heading">
-                <i class="glyphicon glyphicon-th-list"></i>               
+                <i class="glyphicon glyphicon-th-list"> <strong>Lista</strong></i>               
             </div>
                  
             <div class="panel-body">
@@ -22,6 +22,8 @@
                             @if (Session::has('message'))
                                 <div class="alert alert-info">{{ Session::get('message') }}</div>
                             @endif
+
+                                         
                             <table class="table table-hover table-striped table-condensed">
                                 <thead>
                                     <tr>                                        

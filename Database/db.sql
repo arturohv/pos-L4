@@ -77,11 +77,18 @@ CREATE TABLE tax_group(
 
 CREATE TABLE person(
 	id SERIAL NOT NULL ,
+	person_type_id INTEGER NOT NULL,
 	nip VARCHAR(30) NOT NULL ,
 	first_name VARCHAR(60) NOT NULL ,
 	last_name VARCHAR(40) ,
 	PRIMARY KEY (id),
 	UNIQUE(nip)	
+);
+
+CREATE TABLE person_type(
+	id SERIAL NOT NULL ,
+	person_type_name VARCHAR(50) NOT NULL ,	
+	PRIMARY KEY (id)
 );
 
 CREATE TABLE address_type(
@@ -283,6 +290,8 @@ ALTER TABLE invoice_header ADD constraint fk_invoice_header_order FOREIGN KEY (o
 /*invoice_detail*/
 ALTER TABLE invoice_detail ADD constraint fk_invoice_detail_invoice_header FOREIGN KEY (invoice_id) REFERENCES invoice_header (id);
 ALTER TABLE invoice_detail ADD constraint fk_invoice_detail_order_detail FOREIGN KEY (order_detail_id) REFERENCES order_detail (id);
+/*Person*/
+ALTER TABLE person ADD constraint fk_person_person_type FOREIGN KEY (person_type_id) REFERENCES person_type (id);
 /*costumer*/
 ALTER TABLE customer ADD constraint fk_customer_person FOREIGN KEY (id) REFERENCES person (id);
 /*person_phones*/
@@ -369,8 +378,11 @@ insert into permission(menu_id,controller_name,action_name,description) values(3
 insert into permission(menu_id,controller_name,action_name,description) values(4,null,null,'Ventas');
 insert into permission(menu_id,controller_name,action_name,description) values(5,null,null,'Inventario');
 insert into permission(menu_id,controller_name,action_name,description) values(6,null,null,'Configuración');
-/*SuperUser*/
-insert into person (nip,first_name, last_name) values ('admin','Administrador','Administrador');
+
+/*Person Type*/	
+insert into person_type (person_type_name) values ('Fisica');
+insert into person_type (person_type_name) values ('Juridica');
+insert into person_type (person_type_name) values ('Extranjero');	
 
 
 

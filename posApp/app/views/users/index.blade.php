@@ -19,15 +19,28 @@
                     <div class="col-lg-12">
                         <div class="col-lg-12"> 
                         <div class="table-responsive">
-                            @if (Session::has('message'))
-                                <div class="alert alert-info">{{ Session::get('message') }}</div>
+                            @if (Session::has('message_info'))
+                                <div class="alert alert-info" role="alert">
+                                     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                    <span class="sr-only">Info</span>
+                                    {{ Session::get('message_info') }}
+                                </div>
                             @endif
+
+                            @if (Session::has('message_error'))
+                                <div class="alert alert-danger" role="alert">
+                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                    <span class="sr-only">Error</span>
+                                    {{ Session::get('message_error') }}
+                                </div>
+                            @endif
+                            
                             <table class="table table-hover table-striped table-condensed">
                                 <thead>
                                     <tr>                                        
                                         <th>Usuario</th>
                                         <th>Nombre</th>
-                                        <th>Active</th>
+                                        <th>Activo</th>
                                         <th>Administrador</th>
                                                                       
                                     </tr>

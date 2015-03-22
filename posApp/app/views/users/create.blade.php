@@ -2,7 +2,7 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <i class="fglyphicon glyphicon-plus"></i> 
+                <i class="glyphicon glyphicon-plus"></i> 
             </div>
             {{ HTML::ul($errors->all()) }}
             {{ Form::open(array('url' => 'users')) }}     
@@ -15,22 +15,22 @@
 
                         <div class="form-group">
                             {{ Form::label('nip', 'Identificacion') }}                                
-                            {{Form::text('nip', $person->nip, array('class' => 'form-control input-xlarge', 'required' => 'true', 'disabled' => 'disabled'))}}              
+                            {{Form::text('nip', $person->nip, array('class' => 'form-control', 'required' => 'true', 'disabled' => 'disabled'))}}              
                         </div>
 
                         <div class="form-group">
                             {{ Form::label('fullname', 'Nombre Completo') }}                                
-                            {{Form::text('fullname', $person->first_name . ' '. $person->last_name, array('class' => 'form-control input-xlarge', 'required' => 'true', 'disabled' => 'disabled'))}}              
+                            {{Form::text('fullname', $person->first_name . ' '. $person->last_name, array('class' => 'form-control', 'required' => 'true', 'disabled' => 'disabled'))}}              
                         </div>    
 
                         <div class="form-group">
                             {{ Form::label('user_name', 'Nombre de Usuario') }}                                
-                            {{Form::text('user_name', Input::old('user_name'), array('class' => 'form-control input-xlarge', 'required' => 'true'))}}              
+                            {{Form::text('user_name', Input::old('user_name'), array('class' => 'form-control', 'required' => 'true'))}}              
                         </div>
 
                         <div class="form-group">
                             {{ Form::label('email', 'Correo Electronico') }}                                
-                            {{Form::email('email', Input::old('email'), array('class' => 'form-control input-xlarge', 'required' => 'true'))}}                     
+                            {{Form::email('email', Input::old('email'), array('class' => 'form-control', 'required' => 'true'))}}                     
                         </div>
 
                         <div class="form-group">

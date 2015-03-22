@@ -13,7 +13,7 @@ class PersonController extends BaseController {
                     ->paginate(5);
 
 		$this->layout->title = 'Mantenimiento';
-		$this->layout->titulo = 'Lista de Personas';
+		$this->layout->titulo = 'Personas';
 		$this->layout->nest(
 			'content',
 			'persons.index',
@@ -32,12 +32,16 @@ class PersonController extends BaseController {
 	 */
 	public function create()
 	{
+		$personTypes = PersonType::lists('person_type_name', 'id');
+
 		$this->layout->title = 'Mantenimiento';
-		$this->layout->titulo = 'Agregar Persona';
+		$this->layout->titulo = 'Personas';
 		$this->layout->nest(
 			'content',
 			'persons.create',
-			array()
+			array(
+				'personTypes' => $personTypes
+			)
 		);
 	}
 
@@ -49,12 +53,14 @@ class PersonController extends BaseController {
 	 */
 	public function store()
 	{
+		$personType = Input::get('personType');
 		$nip = Input::get('nip');
 	    $firstName = Input::get('firstName');
 	    $lastName = Input::get('lastName');		
 
 		$person = new Person();
 		$person->nip = $nip;
+		$person->person_type_id = $personType;
 		$person->first_name = $firstName;
 		$person->last_name = $lastName;		
 		$person->save();
@@ -73,7 +79,7 @@ class PersonController extends BaseController {
 	public function show($id)
 	{
 		$this->layout->title = 'Mantenimiento';
-		$this->layout->titulo = 'Detalle de Persona';
+		$this->layout->titulo = 'Personas';
 		$person = Person::find($id);
 		$this->layout->nest(
 			'content',
@@ -94,7 +100,7 @@ class PersonController extends BaseController {
 	public function edit($id)
 	{
 		$this->layout->title = 'Mantenimiento';
-		$this->layout->titulo = 'Editar Persona';
+		$this->layout->titulo = 'Personas';
 		$person = Person::find($id);
 		$this->layout->nest(
 			'content',
@@ -114,6 +120,7 @@ class PersonController extends BaseController {
 	 */
 	public function update($id)
 	{
+		$personType = Input::get('personType');
 		$nip = Input::get('nip');
 	    $firstName = Input::get('firstName');
 	    $lastName = Input::get('lastName');		
@@ -121,6 +128,7 @@ class PersonController extends BaseController {
 		
 		$person = Person::find($id);
 		$person->nip = $nip;
+		$person->person_type_id = $personType;
 		$person->first_name = $firstName;
 		$person->last_name = $lastName;			
 		$person->save();

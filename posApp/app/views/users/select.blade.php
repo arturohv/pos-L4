@@ -30,7 +30,7 @@
                                         <td>{{ $person->last_name }}</td>
                                         <td>{{ $person->first_name }}</td>
                                         <td>
-                                            {{link_to("users/$person->id/select", '', $attributes = array('Class'=>'btn btn-default btn-xs glyphicon glyphicon-eye-open'), $secure = null);}}
+                                            {{link_to("users/$person->id/select", '', $attributes = array('Class'=>'btn btn-default btn-xs glyphicon glyphicon-chevron-right'), $secure = null);}}
                                         </td>
                                     </tr>
                                     @endforeach

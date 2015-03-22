@@ -2,7 +2,7 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <i class="glyphicon glyphicon-pencil"></i>               
+                <i class="glyphicon glyphicon-pencil"> <strong>Editar</strong></i>               
             </div>
              {{ Form::open(array('url' => "persons/$person->id/update")) }}               
             <div class="panel-body">
@@ -11,17 +11,17 @@
                        
                         <div class="form-group">
                             {{ Form::label('nip', 'Identificación') }}                       
-                            {{Form::text('nip', $person->nip, array('class' => 'form-control input-xlarge', 'required' => 'true'))}}              
+                            {{Form::text('nip', $person->nip, array('class' => 'form-control', 'required' => 'true'))}}              
                         </div>
 
                         <div class="form-group">
                             {{ Form::label('firstName', 'Nombre') }}                       
-                            {{Form::text('firstName', $person->first_name, array('class' => 'form-control input-xlarge', 'required' => 'true'))}}         
+                            {{Form::text('firstName', $person->first_name, array('class' => 'form-control', 'required' => 'true'))}}         
                         </div>
 
                         <div class="form-group">
                             {{ Form::label('lastName', 'Apellidos') }}                       
-                            {{Form::text('lastName', $person->last_name, array('class' => 'form-control input-xlarge', 'required' => 'true'))}}         
+                            {{Form::text('lastName', $person->last_name, array('class' => 'form-control', 'required' => 'true'))}}         
                         </div>                                   
                 
                         {{Form::submit('Guardar', array('Class'=>'btn btn-default'))}} 

@@ -81,24 +81,37 @@ class UserController extends BaseController {
 	 */
 	public function store()
 	{
-		$id = Input::get('id');
-		$user_name = Input::get('user_name');
-	    $email = Input::get('email');
-	    $password = Input::get('password');
-	    $password = Hash::make($password);
-		$is_active = Input::get('is_active');
-		$is_admin = Input::get('is_admin');
+		try{
+			$id = Input::get('id');
+			$user_name = Input::get('user_name');
+		    $email = Input::get('email');
+		    $password = Input::get('password');
+		    $password = Hash::make($password);
+			$is_active = Input::get('is_active');
+			$is_admin = Input::get('is_admin');
 
-		$user = new User();
-		$user->id = $id;
-		$user->user_name = $user_name;
-		$user->email = $email;
-		$user->password = $password;
-		$user->is_active = $is_active;
-		$user->is_admin = $is_admin;
-		$user->save();
+			if (is_null($is_active)){
+				$is_active = false;
+			}
 
-		Session::flash('message', 'Registro guardado satisfactoriamente!');
+			if (is_null($is_admin)){
+				$is_admin = false;
+			}
+
+			$user = new User();
+			$user->id = $id;
+			$user->user_name = $user_name;
+			$user->email = $email;
+			$user->password = $password;
+			$user->is_active = $is_active;
+			$user->is_admin = $is_admin;
+			$user->save();
+			Session::flash('message_info', 'Registro guardado satisfactoriamente!');
+			
+
+		} catch(Exception $e) {
+			Session::flash('message_error', 'Error al guardar el registro: '. $e->getMessage());
+		}
 		return Redirect::to('users');
 	}
 

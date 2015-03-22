@@ -24,8 +24,7 @@
     <!-- Custom Fonts -->    
     {{HTML::style('bootstrap/font-awesome-4.1.0/css/font-awesome.min.css')}}
     {{HTML::style('bootstrap/css/plugins/dataTables.bootstrap.css')}}
-
-
+    
     
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -279,7 +278,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="page-header">{{$titulo}}</h3>
+                    <h4 class="page-header">{{$titulo}}</h4>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -298,8 +297,7 @@
     {{HTML::script('bootstrap/js/jquery.js')}}
     <!-- Bootstrap Core JavaScript -->   
     {{HTML::script('bootstrap/js/bootstrap.min.js')}}    
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="js/plugins/metisMenu/metisMenu.min.js"></script>
+    <!-- Metis Menu Plugin JavaScript -->    
     {{HTML::script('bootstrap/js/plugins/metisMenu/metisMenu.min.js')}}    
     <!-- Morris Charts JavaScript -->    
     <!--{{HTML::script('bootstrap/js/plugins/morris/raphael.min.js')}}  
@@ -308,7 +306,8 @@
 
     <!-- Custom Theme JavaScript -->
     {{HTML::script('bootstrap/js/sb-admin-2.js')}}
-
+    
+    
    
 </body>
 

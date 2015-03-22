@@ -2,7 +2,7 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <i class="glyphicon glyphicon-eye-open"></i>               
+                <i class="glyphicon glyphicon-eye-open"> <strong>Detalle</strong></i>               
             </div>
                  
             <div class="panel-body">
@@ -14,6 +14,11 @@
                                     <tr>
                                     <td><strong>Identificación:</strong></td>
                                     <td>{{$person->nip}}</td>
+                                    </tr>
+
+                                    <tr>
+                                    <td><strong>Tipo de Identificación:</strong></td>
+                                    <td>{{$person->personType->person_type_name}}</td>
                                     </tr>
 
                                     <tr>
