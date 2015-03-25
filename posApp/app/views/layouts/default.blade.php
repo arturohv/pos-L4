@@ -24,10 +24,8 @@
     <!-- Custom Fonts -->    
     {{HTML::style('bootstrap/font-awesome-4.1.0/css/font-awesome.min.css')}}
     {{HTML::style('bootstrap/css/plugins/dataTables.bootstrap.css')}}
-    <!-- Custom GridBoot -->    
-    {{HTML::style('bootstrap/css/jquery.bootgrid.css')}}
-    <!-- Custom Theme GridBoot -->
-    {{HTML::script('bootstrap/js/moderniz.2.8.1.js')}}
+ 
+   
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -309,29 +307,7 @@
     <!-- Custom Theme JavaScript -->
     {{HTML::script('bootstrap/js/sb-admin-2.js')}}
     
-    <!-- Custom Theme BootGrid -->
-    {{HTML::script('bootstrap/js/jquery.bootgrid.js')}}
-
-    <script>
-            $(function()
-            {
-                function init()
-                {
-                    $("#grid").bootgrid({
-                        formatters: {
-                            "link": function(column, row)
-                            {
-                                return "<a href=\"#\">" + column.id + ": " + row.id + "</a>";
-                            }
-                        }
-                    });
-                }
-                
-                init();
-                
-                
-            });
-        </script>
+   
    
 </body>
 
