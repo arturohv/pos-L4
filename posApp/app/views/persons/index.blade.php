@@ -23,6 +23,95 @@
                                 <div class="alert alert-info">{{ Session::get('message') }}</div>
                             @endif
 
+
+                            <div class="col-md-9">
+                    <button id="append" type="button" class="btn btn-default">Append</button>
+                    <button id="clear" type="button" class="btn btn-default">Clear</button>
+                    <button id="removeSelected" type="button" class="btn btn-default">Remove Selected</button>
+                    <button id="destroy" type="button" class="btn btn-default">Destroy</button>
+                    <button id="init" type="button" class="btn btn-default">Init</button>
+                    <!--div class="table-responsive"-->
+                        <table id="grid" class="table table-condensed table-hover table-striped" data-selection="true" data-multi-select="true" data-row-select="true" data-keep-selection="true">
+                            <thead>
+                                <tr>
+                                    <th data-column-id="id" data-identifier="true" data-type="numeric" data-align="right">ID</th>
+                                    <th data-column-id="sender" data-order="asc" data-align="center" data-header-align="center">Sender</th>
+                                    <th data-column-id="received" data-css-class="cell" data-header-css-class="column" data-filterable="true">Received</th>
+                                    <th data-column-id="link" data-formatter="link" data-sortable="false">Link</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>me@rafaelstaib.com</td>
+                                    <td>11.12.2014</td>
+                                    <td>Link</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>me@rafaelstaib.com</td>
+                                    <td>12.12.2014</td>
+                                    <td>Link</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>me@rafaelstaib.com</td>
+                                    <td>10.12.2014</td>
+                                    <td>Link</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>mo@rafaelstaib.com</td>
+                                    <td>12.08.2014</td>
+                                    <td>Link</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>ma@rafaelstaib.com</td>
+                                    <td>12.06.2014</td>
+                                    <td>Link</td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>me@rafaelstaib.com</td>
+                                    <td>12.12.2014</td>
+                                    <td>Link</td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>ma@rafaelstaib.com</td>
+                                    <td>12.11.2014</td>
+                                    <td>Link</td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td>mo@rafaelstaib.com</td>
+                                    <td>15.12.2014</td>
+                                    <td>Link</td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td>me@rafaelstaib.com</td>
+                                    <td>24.12.2014</td>
+                                    <td>Link</td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td>ma@rafaelstaib.com</td>
+                                    <td>14.12.2014</td>
+                                    <td>Link</td>
+                                </tr>
+                                <tr>
+                                    <td>11</td>
+                                    <td>mo@rafaelstaib.com</td>
+                                    <td>12.12.2014</td>
+                                    <td>Link</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    <!--/div-->
+                </div>
+
                                          
                             <table class="table table-hover table-striped table-condensed">
                                 <thead>
@@ -59,3 +148,6 @@
         </div>
     </div>
 </div>
+
+<!-- Custom Theme BootGrid -->
+    {{HTML::script('bootstrap/js/jquery.bootgrid.js')}}
