@@ -1,14 +1,15 @@
-<div class="row">
-
-    <div class="col-lg-12"> 
-
-    <div class="pull-right">
+<div class="pull-right">
         <div class="btn-group">
             {{link_to("persons/create", 'Nuevo', $attributes = array('Class'=>'btn btn-default'), $secure = null);}}                                    
         </div>
     </div> 
-    <br> 
-    <br>            
+    </br>
+    </br>
+
+<div class="row"> 
+
+    <div class="col-lg-12">   
+           
         <div class="panel panel-default">
             <div class="panel-heading">
                 <i class="glyphicon glyphicon-th-list"> <strong>Lista</strong></i>               
@@ -23,15 +24,13 @@
                                 <div class="alert alert-info">{{ Session::get('message') }}</div>
                             @endif
 
-
-                            
                     <!--div class="table-responsive"-->
-                        <table class="table table-condensed table-hover table-striped">
+                        <table id="myTable" class="table table-condensed table-hover table-striped display">
                             <thead>
                                 <tr>
-                                    <th>Identificacion</th>
-                                    <th>Nombre</th>
-                                    <th>Acciones</th>
+                                    <th>Identificacion</th>                                   
+                                    <th>Nombre Completo</th>                                    
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -39,6 +38,7 @@
                                     <tr>                                         
                                         <td>{{ $person->nip }}</td>
                                         <td>{{ $person->last_name }} {{ $person->first_name }}</td>
+                                        
                                         <td>
                                         {{link_to("persons/$person->id/show", '', $attributes = array('Class'=>'btn btn-default btn-xs glyphicon glyphicon-eye-open'), $secure = null);}}
 
@@ -55,7 +55,6 @@
 
                                          
                              
-                        {{ $persons->links() }}
                         </div>
                         </div>
                         <!-- /.table-responsive -->

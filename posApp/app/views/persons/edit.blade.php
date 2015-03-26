@@ -7,7 +7,13 @@
              {{ Form::open(array('url' => "persons/$person->id/update")) }}               
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-lg-6 col-lg-offset-3">              
+                    <div class="col-lg-6 col-lg-offset-3">
+
+                        <div class="form-group">
+                            {{ Form::label('personType', 'Tipo de Identificacion') }}
+                            {{ Form::select('personType', $personTypes, $person->person_type_id, array('class' => 'form-control')) }}            
+                                             
+                        </div>               
                        
                         <div class="form-group">
                             {{ Form::label('nip', 'Identificación') }}                       
@@ -21,7 +27,7 @@
 
                         <div class="form-group">
                             {{ Form::label('lastName', 'Apellidos') }}                       
-                            {{Form::text('lastName', $person->last_name, array('class' => 'form-control', 'required' => 'true'))}}         
+                            {{Form::text('lastName', $person->last_name, array('class' => 'form-control'))}}         
                         </div>                                   
                 
                         {{Form::submit('Guardar', array('Class'=>'btn btn-default'))}} 

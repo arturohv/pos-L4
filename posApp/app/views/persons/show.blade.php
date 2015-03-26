@@ -23,7 +23,7 @@
 
                                     <tr>
                                     <td><strong>Nombre Completo:</strong></td>
-                                    <td>{{$person->first_name}} {{$person->last_name}}</td>
+                                    <td>{{$person->last_name}} {{$person->first_name}}</td>
                                     </tr>                                                    
                                 </table>
 

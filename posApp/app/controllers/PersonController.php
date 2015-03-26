@@ -9,8 +9,8 @@ class PersonController extends BaseController {
 	public function index()
 	{		
 		$persons = DB::table('person')
-                    ->orderBy('last_name')                    
-                    ->paginate(5);
+                    
+                    ->get();
 
 		$this->layout->title = 'Mantenimiento';
 		$this->layout->titulo = 'Personas';
@@ -99,6 +99,8 @@ class PersonController extends BaseController {
 	 */
 	public function edit($id)
 	{
+		$personTypes = PersonType::lists('person_type_name', 'id');
+
 		$this->layout->title = 'Mantenimiento';
 		$this->layout->titulo = 'Personas';
 		$person = Person::find($id);
@@ -106,7 +108,8 @@ class PersonController extends BaseController {
 			'content',
 			'persons.edit',
 			array(
-				'person' => $person
+				'person' => $person,
+				'personTypes' => $personTypes
 			)
 		);
 	}

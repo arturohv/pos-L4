@@ -14,7 +14,7 @@ class UserController extends BaseController {
 
         $users = User::with('person')
 		->orderBy('user_name')
-        ->paginate(5);
+        ->get();
 
 		$this->layout->title = 'Seguridad';
 		$this->layout->titulo = 'Lista Usuarios';
@@ -44,7 +44,7 @@ class UserController extends BaseController {
 	{
 		$persons = DB::table('person')
                     ->orderBy('last_name')                    
-                    ->paginate(5);
+                    ->get();
         
 
 		$this->layout->title = 'Seguridad';

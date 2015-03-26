@@ -35,7 +35,7 @@
                                 </div>
                             @endif
                             
-                            <table class="table table-hover table-striped table-condensed">
+                            <table id="myTable" class="table table-condensed table-hover table-striped display">
                                 <thead>
                                     <tr>                                        
                                         <th>Usuario</th>
@@ -69,7 +69,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            {{ $users->links() }}
+                            
                         </div>
                         </div>
                         <!-- /.table-responsive -->

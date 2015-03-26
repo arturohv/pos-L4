@@ -23,8 +23,8 @@
     <!-- {{HTML::style('bootstrap/css/plugins/morris.css')}} -->
     <!-- Custom Fonts -->    
     {{HTML::style('bootstrap/font-awesome-4.1.0/css/font-awesome.min.css')}}
-    {{HTML::style('bootstrap/css/plugins/dataTables.bootstrap.css')}}
- 
+    
+    {{HTML::style('bootstrap/css/dataTables.bootstrap.css')}}
    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -306,8 +306,41 @@
 
     <!-- Custom Theme JavaScript -->
     {{HTML::script('bootstrap/js/sb-admin-2.js')}}
+    <!-- Custom Theme Datatables -->
     
-   
+    {{HTML::script('bootstrap/js/plugins/dataTables/jquery.dataTables.js')}}
+    {{HTML::script('bootstrap/js/dataTables.bootstrap.js')}}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#myTable').DataTable({
+                    language: {
+                        processing:     "Proceso en curso...",
+                        search:         "Buscar&nbsp;:",
+                        lengthMenu:    "Mostrar _MENU_ registros",
+                        info:           "Mostrando del _START_ al _END_ de _TOTAL_ registros",
+
+                        infoEmpty:      "Mostrando del 0 al 0 de 0 registros",
+                        infoFiltered:   "(Resultado del filtro de _MAX_ registros en total)",
+                        infoPostFix:    "",
+                        loadingRecords: "Cargando registros...",
+                        zeroRecords:    "Aucun &eacute;l&eacute;ment &agrave; afficher",
+                        emptyTable:     "Actualmente no hay registros disponibles",
+                        paginate: {
+                            first:      "Primero",
+                            previous:   "Anterior",
+                            next:       "Siguiente",
+                            last:       "Ultimo"
+                        },
+                        aria: {
+                            sortAscending:  ": Ordenar registros en forma ascendente",
+                            sortDescending: ": Ordenar registros en forma descendente"
+                        }
+
+                    }
+            });
+        });
+</script>
+
    
 </body>
 
